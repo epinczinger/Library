@@ -8,9 +8,19 @@ const inputPages = document.getElementById('input-pages');
 const inputRead = document.getElementById('input-read');
 const btn = document.getElementById('submit-form');
 
-const boook = (title, author, pages, read) => ({
-  title, author, pages, read,
-});
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+}
+
+// ReFactory
+// const boook = (title, author, pages, read) => ({
+//   title, author, pages, read,
+// });
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
@@ -80,13 +90,9 @@ function displayForm() {
 }
 
 function submitForm() {
-  const bok = boook(
-    inputTitle.value,
-    inputAuthor.value,
-    inputPages.value,
-    inputRead.checked,
+  addBookToLibrary(
+    new Book(inputTitle.value, inputAuthor.value, inputPages.value, inputRead.checked),
   );
-  addBookToLibrary(bok);
   inputTitle.value = '';
   inputAuthor.value = '';
   inputPages.value = '';
@@ -100,19 +106,29 @@ btn.addEventListener('click', () => {
   submitForm();
 });
 
-const bok1 = boook(
+const book1 = new Book(
   'Harry Potter and the Chamber of Secrets',
   'J.K.Rowling',
   533,
   true,
 );
-const bok2 = boook('Catcher in the Rye', 'J.D. Salinger', 297, true);
-const bok3 = boook('Crime and Punishment', 'Fyodor Dostoevsky', 684, true);
-const bok4 = boook('Cien Años de Soledad', 'Gabriel Marquez', 484, true);
+const book2 = new Book('Catcher in the Rye', 'J.D. Salinger', 297, true);
+const book3 = new Book('Crime and Punishment', 'Fyodor Dostoevsky', 684, true);
+const book4 = new Book('Cien Años de Soledad', 'Gabriel Marquez', 484, true);
 
-addBookToLibrary(bok1);
-addBookToLibrary(bok2);
-addBookToLibrary(bok3);
-addBookToLibrary(bok4);
+// const bok1 = boook(
+//   'Harry Potter and the Chamber of Secrets',
+//   'J.K.Rowling',
+//   533,
+//   true,
+// );
+// const bok2 = boook('Catcher in the Rye', 'J.D. Salinger', 297, true);
+// const bok3 = boook('Crime and Punishment', 'Fyodor Dostoevsky', 684, true);
+// const bok4 = boook('Cien Años de Soledad', 'Gabriel Marquez', 484, true);
+
+addBookToLibrary(book1);
+addBookToLibrary(book2);
+addBookToLibrary(book3);
+addBookToLibrary(book4);
 
 displayLibrary();
